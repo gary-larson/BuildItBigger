@@ -63,15 +63,4 @@ public class JokeLibraryTests {
     public void testJokeSmithGetter() {
         assertNotNull(jokeSmith.getJoke());
     }
-
-    /**
-     * Test for randomness
-     * may occasionally fail
-     * should not fail all the time
-     */
-    @Test
-    public void testJokeSmithRandom() {
-        String temp = jokeSmith.getJoke();
-        assertNotEquals(temp, jokeSmith.getJoke());
-    }
 }

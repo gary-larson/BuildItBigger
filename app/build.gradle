@@ -72,3 +72,42 @@ dependencies {
 
     testImplementation 'junit:junit:4.13'
 }
+
+task startAppengineRun {
+    dependsOn ':backend:appengineStart'
+    doLast {
+        println "App Engine Started"
+    }
+}
+
+task runUnitTests {
+    dependsOn "test"
+    doLast {
+        println "Unit Tests Done"
+    }
+}
+
+task runAndroidTests {
+    dependsOn "connectedAndroidTest"
+    doLast {
+        println "Android Tests Done"
+    }
+}
+
+task stopAppengineRun {
+    dependsOn ':backend:appengineStop'
+    doLast {
+        println "App Engine Stopped"
+    }
+}
+
+task runAllMyTasks {
+    dependsOn = ["startAppengineRun", "runUnitTests", "runAndroidTests", "stopAppengineRun"]
+    tasks.findByName("runUnitTests").mustRunAfter "startAppengineRun"
+    tasks.findByName("runAndroidTests").mustRunAfter "runUnitTests"
+    tasks.findByName("stopAppengineRun").mustRunAfter "runAndroidTests"
+    doLast {
+        println "Completed All Tasks"
+    }
+}
+
