@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +14,12 @@ import com.udacity.gradle.builditbigger.showjokelibrary.JokeActivity;
 /**
  * Class to handle the main activity
  */
-public class MainActivity extends AppCompatActivity implements EndpointsAsyncTask.AsyncResponse {
+public class MainActivity extends AppCompatActivity implements EndpointsAsyncTask.AsyncResponse,
+        View.OnClickListener {
+    // Declare variables
+    MainActivityFragment mMainActivityFragment;
+    AdUtility mAdUtility;
+
 
     /**
      *Method to create and initialize the main activity
@@ -28,9 +34,26 @@ public class MainActivity extends AppCompatActivity implements EndpointsAsyncTas
         setContentView(mBinding.getRoot());
         if (savedInstanceState == null) {
             // load main activity fragment
+            mMainActivityFragment = MainActivityFragment.newInstance();
             getSupportFragmentManager().beginTransaction()
-                    .replace(mBinding.fragment.getId(), MainActivityFragment.newInstance())
+                    .replace(mBinding.fragment.getId(), mMainActivityFragment)
                     .commitNow();
+        }
+        if (getResources().getBoolean(R.bool.is_free)) {
+            mAdUtility = new AdUtility(this);
+            mAdUtility.setupInterstitialAd();
+        }
+    }
+
+    /**
+     * Method on resume to load new Interstitial ad in free mode
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (getResources().getBoolean(R.bool.is_free)) {
+            // load a new Interstitial ad
+            mAdUtility.loadInterstitialAd();
         }
     }
 
@@ -69,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements EndpointsAsyncTas
     @Override
     public void asyncCompleted(String output) {
         // turn off loading indicator
-        MainActivityFragment.isLoading = false;
+        mMainActivityFragment.setIsLoading(false);
         // setup intent to joke activity android library
         Intent intent = new Intent(this, JokeActivity.class);
         // use bundle to send joke through intent
@@ -78,5 +101,27 @@ public class MainActivity extends AppCompatActivity implements EndpointsAsyncTas
         intent.putExtras(bundle);
         // start joke activity in the android library
         startActivity(intent);
+    }
+
+    /**
+     * Method to handle clicks in fragment
+     * @param view that was clicked
+     */
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.b_tell_joke) {
+            // show ad in free mode
+            if (getResources().getBoolean(R.bool.is_free)) {
+                mAdUtility.showInterstitialAd();
+            }
+            // show loading indicator
+            mMainActivityFragment.setIsLoading(true);
+            // create async task
+            EndpointsAsyncTask endpointsAsyncTask = new EndpointsAsyncTask();
+            // set up listener for endpoints completion
+            endpointsAsyncTask.delegate = this;
+            // retrieve joke through endpoints
+            endpointsAsyncTask.execute();
+        }
     }
 }

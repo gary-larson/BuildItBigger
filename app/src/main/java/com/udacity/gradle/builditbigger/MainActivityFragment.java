@@ -14,12 +14,12 @@ import com.udacity.gradle.builditbigger.databinding.FragmentMainBinding;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment implements View.OnClickListener {
+public class MainActivityFragment extends Fragment {
     // Declare constant
     private static final String LOADING_KEY = "LoadingKey";
     // Declare variables
     private FragmentMainBinding mBinding;
-    public static boolean isLoading;
+    private boolean isLoading;
 
 
     /**
@@ -43,33 +43,27 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
         mBinding = FragmentMainBinding.inflate(inflater, container, false);
         View view = mBinding.getRoot();
         isLoading = false;
-        // get banner ads
-        AdUtility.getBannerAds(mBinding);
+        // get banner ads if in free flavor
+        if (getResources().getBoolean(R.bool.is_free)) {
+            AdUtility adUtility = new AdUtility(getContext());
+            adUtility.getBannerAds(mBinding);
+        }
         // set on click listener for tell joke button
-        mBinding.bTellJoke.setOnClickListener(this);
+        mBinding.bTellJoke.setOnClickListener((View.OnClickListener) getActivity());
         if (savedInstanceState != null) {
-            isLoading = savedInstanceState.getBoolean(LOADING_KEY);
-            if (isLoading) {
-                mBinding.loadingIndicator.setVisibility(View.VISIBLE);
-            } else {
-                mBinding.loadingIndicator.setVisibility(View.GONE);
-            }
+            setIsLoading(savedInstanceState.getBoolean(LOADING_KEY));
         }
         return view;
     }
 
     /**
-     * Mehtod to adjust fragment when resuming
+     * Method to adjust fragment when resuming
      */
     @Override
     public void onResume() {
         super.onResume();
         // Set loading indicator to current value of is loading
-        if (isLoading) {
-            mBinding.loadingIndicator.setVisibility(View.VISIBLE);
-        } else {
-            mBinding.loadingIndicator.setVisibility(View.GONE);
-        }
+        setIsLoading(isLoading);
     }
 
     /**
@@ -83,21 +77,15 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
     }
 
     /**
-     * Method to handle clicks in fragment
-     * @param view that was clicked
+     * Method to set visibility on loading indicator
+     * @param loading indicator
      */
-    @Override
-    public void onClick(View view) {
-        if (view.getId() == mBinding.bTellJoke.getId()) {
-            // show loading indicator
-            isLoading = true;
+    public void setIsLoading(boolean loading) {
+        isLoading = loading;
+        if (isLoading) {
             mBinding.loadingIndicator.setVisibility(View.VISIBLE);
-            // create async task
-            EndpointsAsyncTask endpointsAsyncTask = new EndpointsAsyncTask();
-            // set up listener for endpoints completion
-            endpointsAsyncTask.delegate = (EndpointsAsyncTask.AsyncResponse) getContext();
-            // retrieve joke through endpoints
-            endpointsAsyncTask.execute();
+        } else {
+            mBinding.loadingIndicator.setVisibility(View.GONE);
         }
     }
 }

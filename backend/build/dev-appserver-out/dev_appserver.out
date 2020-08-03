@@ -1,26 +1,21 @@
-Jul 31, 2020 9:05:40 PM com.google.appengine.tools.development.SystemPropertiesManager setSystemProperties
+Aug 03, 2020 12:48:07 PM com.google.appengine.tools.development.SystemPropertiesManager setSystemProperties
 INFO: Overwriting system property key 'java.util.logging.config.file', value 'C:\Users\GaryL\AppData\Local\Google\Cloud SDK\google-cloud-sdk\platform\google_appengine\google\appengine\tools\java\config\sdk\logging.properties' with value 'WEB-INF/logging.properties' from 'D:\Users\GaryL\AndroidStudioProjects\Android_Developer_Nano\BuildItBetter\backend\build\exploded-backend\WEB-INF\appengine-web.xml'
-2020-07-31 21:05:41.211:INFO::main: Logging initialized @1830ms to org.eclipse.jetty.util.log.StdErrLog
-2020-07-31 21:05:41.465:WARN:oejs.AbstractConnector:main: Ignoring deprecated socket close linger time
-Aug 01, 2020 2:05:42 AM com.google.appengine.tools.development.IsolatedAppClassLoader checkWorkingDirectory
+2020-08-03 12:48:08.235:INFO::main: Logging initialized @2352ms to org.eclipse.jetty.util.log.StdErrLog
+2020-08-03 12:48:08.511:WARN:oejs.AbstractConnector:main: Ignoring deprecated socket close linger time
+Aug 03, 2020 5:48:09 PM com.google.appengine.tools.development.IsolatedAppClassLoader checkWorkingDirectory
 WARNING: Your working directory, (D:\Users\GaryL\AndroidStudioProjects\Android_Developer_Nano\BuildItBetter) is not equal to your 
 web application root (D:\Users\GaryL\AndroidStudioProjects\Android_Developer_Nano\BuildItBetter\backend\build\exploded-backend)
 You will not be able to access files from your working directory on the production server.
 
-2020-07-31 21:05:42.651:INFO:oejs.Server:main: jetty-9.4.27.v20200227; built: 2020-02-27T18:37:21.340Z; git: a304fd9f351f337e7c0e2a7c28878dd536149c6c; jvm 1.8.0_242-release-1644-b01
-2020-07-31 21:05:45.338:INFO:oejsh.ContextHandler:main: Started c.g.a.t.d.j.DevAppEngineWebAppContext@5745ca0e{/,file:///D:/Users/GaryL/AndroidStudioProjects/Android_Developer_Nano/BuildItBetter/backend/build/exploded-backend/,AVAILABLE}{D:\Users\GaryL\AndroidStudioProjects\Android_Developer_Nano\BuildItBetter\backend\build\exploded-backend}
-2020-07-31 21:05:45.339:INFO:oejs.session:main: DefaultSessionIdManager workerName=node0
-2020-07-31 21:05:45.339:INFO:oejs.session:main: node0 Scavenging disabled
-2020-07-31 21:05:45.403:INFO:oejs.AbstractConnector:main: Started NetworkTrafficSelectChannelConnector@6b09bb57{HTTP/1.1, (http/1.1)}{localhost:8080}
-2020-07-31 21:05:45.417:INFO:oejs.Server:main: Started @6037ms
-Aug 01, 2020 2:05:45 AM com.google.appengine.tools.development.AbstractModule startup
+2020-08-03 12:48:09.620:INFO:oejs.Server:main: jetty-9.4.27.v20200227; built: 2020-02-27T18:37:21.340Z; git: a304fd9f351f337e7c0e2a7c28878dd536149c6c; jvm 1.8.0_242-release-1644-b01
+2020-08-03 12:48:12.398:INFO:oejsh.ContextHandler:main: Started c.g.a.t.d.j.DevAppEngineWebAppContext@5745ca0e{/,file:///D:/Users/GaryL/AndroidStudioProjects/Android_Developer_Nano/BuildItBetter/backend/build/exploded-backend/,AVAILABLE}{D:\Users\GaryL\AndroidStudioProjects\Android_Developer_Nano\BuildItBetter\backend\build\exploded-backend}
+2020-08-03 12:48:12.399:INFO:oejs.session:main: DefaultSessionIdManager workerName=node0
+2020-08-03 12:48:12.399:INFO:oejs.session:main: node0 Scavenging disabled
+2020-08-03 12:48:12.467:INFO:oejs.AbstractConnector:main: Started NetworkTrafficSelectChannelConnector@6b09bb57{HTTP/1.1, (http/1.1)}{localhost:8080}
+2020-08-03 12:48:12.485:INFO:oejs.Server:main: Started @6602ms
+Aug 03, 2020 5:48:12 PM com.google.appengine.tools.development.AbstractModule startup
 INFO: Module instance default is running at http://localhost:8080/
-Aug 01, 2020 2:05:45 AM com.google.appengine.tools.development.AbstractModule startup
+Aug 03, 2020 5:48:12 PM com.google.appengine.tools.development.AbstractModule startup
 INFO: The admin console is running at http://localhost:8080/_ah/admin
-Jul 31, 2020 9:05:45 PM com.google.appengine.tools.development.DevAppServerImpl doStart
+Aug 03, 2020 12:48:12 PM com.google.appengine.tools.development.DevAppServerImpl doStart
 INFO: Dev App Server is now running
-2020-07-31 21:09:10.307:INFO:oejs.AbstractConnector:pool-1-thread-1: Stopped NetworkTrafficSelectChannelConnector@6b09bb57{HTTP/1.1, (http/1.1)}{localhost:8080}
-2020-07-31 21:09:10.325:INFO:oejsh.ContextHandler:pool-1-thread-1: Stopped c.g.a.t.d.j.DevAppEngineWebAppContext@5745ca0e{/,file:///D:/Users/GaryL/AndroidStudioProjects/Android_Developer_Nano/BuildItBetter/backend/build/exploded-backend/,UNAVAILABLE}{D:\Users\GaryL\AndroidStudioProjects\Android_Developer_Nano\BuildItBetter\backend\build\exploded-backend}
-Jul 31, 2020 9:09:10 PM com.google.appengine.tools.development.AbstractModule shutdown
-INFO: Shutting down module instance default
-Shutting down.
